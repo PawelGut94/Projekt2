@@ -1,0 +1,55 @@
+{% extends "base.html.twig" %}
+
+{% block main_content %}
+    <div class="padding-top-15">
+        <div class="card">
+            <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a class="nav-link active" href="{{ path('administration_assortment_option',{ 'option' : 'szczegóły', 'offer' : offer}) }}">
+                            {{ 'admin.return' | trans }}
+                        </a></li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane">
+                        <div class="post">
+                            <div class="card-body p-0">
+                                {{ form_start(form) }}
+                                {{ form_row(form.mark) }}
+                                {{ form_row(form.name) }}
+                                {% for message in app.flashes('error') %}
+                                    <ul>
+                                        <li>
+                                            {{ message }}
+                                        </li>
+                                    </ul>
+                                {% endfor %}
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main_content %}
+{% block javascripts %}
+    <script>
+        var $mark = $('#app_offer2_mark')
+        console.log($category);
+        var $tokenMark = $('#app_offer2__token')
+        $mark.change(function () {
+            var $form = $(this).closest('form')
+            var data = {}
+            data[$tokenMark.attr('name')] = $tokenMark.val()
+            data[$mark.attr('name')] = $mark.val()
+            console.log(data[$mark.attr('name')] = $mark.val())
+            $.post($form.attr('action'), data).then(function (response) {
+                $('#app_offer2_model').replaceWith(
+                    $(response).find('#app_offer2_model')
+                )
+            })
+        })
+    </script>
+{% endblock %}

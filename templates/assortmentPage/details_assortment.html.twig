@@ -1,0 +1,110 @@
+{% extends "base.html.twig" %}
+
+{% block main_content %}
+    <div class="padding-top-15">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-4 ">
+                        <div class="slider-for">
+                            {% for photo in photos %}
+                                <img class="log" src="{{ asset('image/'~photo.photo) }}"/>
+
+                            {% endfor %}
+                        </div>
+                        <div class="slider-nav">
+                            {% for photo in photos %}
+                                <img class="log" src="{{ asset('image/'~photo.photo) }}"/>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <div class="offer-name">
+                                    {{ offer.name }}
+                                </div>
+                                <div>
+                                    {{ offer.category.name }}
+                                    <i class="fas fa-angle-double-right"></i>
+                                    {{ offer.subCategory.name }}
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="price">
+                                    {{ price }} zł
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            {{ offer.description }}
+                        </div>
+                        {% for carDetails in car %}
+                            {{ carDetails.carModel.mark.name }}
+                            {{ carDetails.carModel.name }},
+                        {% endfor %}
+                        {% if userInfo == null %}
+                            <div>W celu kupna proszę się zalogować</div>
+                        {% else %}
+                        <div>
+                            <div class="availability">{{ 'assortment.availability' | trans }}: <a>{{ offer.quantity }}</a></div>
+                        </div>
+
+                        {{ form(form) }}
+                        <div>
+                            {{ 'assortment.message_for_individual_order' | trans }}
+                        </div>
+
+                        <button type="button" class="order-individual btn btn-success">
+                            {{ 'assortment.order_individual' | trans }}
+                        </button>
+                        <div id="form-order-individual" class="d-none">
+                        {{ form(individualOrderForm) }}
+
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="details-assortment">
+
+        </div>
+    </div>
+
+    <script>
+        $('.slider-for').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            fade: true,
+            asNavFor: '.slider-nav',
+            autoplay: true
+        });
+        $('.slider-nav').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            asNavFor: '.slider-for',
+            dots: false,
+            centerMode: true,
+            focusOnSelect: true
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.order-individual').on('click', function () {
+                $('#form-order-individual').removeClass('d-none')
+            })
+            $('.add-info').on('click', function () {
+                $('#add-inforomation').addClass('show-information').removeClass('menu-remove')
+            })
+        });
+    </script>
+{% endblock main_content %}

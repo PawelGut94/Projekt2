@@ -1,0 +1,62 @@
+{% extends "base.html.twig" %}
+
+{% block main_content %}
+    <div class="padding-top-15">
+        <div class="content-settings">
+            <ul class="nav nav-pills padding-bottom-15">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('user_order') }}">
+                        {{ 'return' | trans }}
+                    </a>
+                </li>
+            </ul>
+            <div>{{ 'order.number_order' | trans }}</div>
+            {% for order in orderDetails %}
+                <div class="order-details">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            {{ 'order.name_offer' | trans }}
+                        </div>
+                        <div class="col-sm-9">
+                            {{ order.offer.name }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            {{ 'order.quantity' | trans }}
+                        </div>
+                        <div class="col-sm-9">
+                            {{ order.quantity }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            {{ 'order.price' | trans }}
+                        </div>
+                        <div class="col-sm-9">
+                            {{ order.price }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            {{ 'order.together' | trans }}
+                        </div>
+                        <div class="col-sm-9">
+                            {{ order.totalPrice }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="order-details">
+                <div class="row">
+                    <div class="col-sm-3">
+                        {{ 'order.final_price' | trans }}
+                    </div>
+                    <div class="col-sm-9">
+                        {{ order.price }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main_content %}

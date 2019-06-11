@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% block main_content %}
+    <div class="main-content">
+        <div class="contact">
+            <h1>{{ 'menu.contact.main' | trans }}</h1>
+            {% for contact in contact %}
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div>
+                            {{ 'street' | trans }}{{ contact.address }}
+                        </div>
+                        <div>
+                            {{ contact.city }}
+                            {{ contact.zipCode }}
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div><i class="emial far fa-envelope-open"></i>{{ contact.email }}</div>
+                    </div>
+                </div>
+                <h2>{{ 'menu.contact.place' | trans }}</h2>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div>{{ 'menu.contact.city' | trans }}</div>
+                        <div>{{ 'menu.contact.street' | trans }}</div>
+                        <div>{{ 'menu.contact.choise_place' | trans }}</div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div>
+                        {{ form_label(contactForm.city) }}
+                        {{ form_widget(contactForm.city) }}
+                        {{ form_errors(contactForm.city) }}
+                        </div>
+                        <div>
+                        {{ form_label(contactForm.address) }}
+                        {{ form_widget(contactForm.address) }}
+                        {{ form_errors(contactForm.address) }}
+                        </div>
+
+                        /---------------------------------------------/
+
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock main_content %}

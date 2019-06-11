@@ -1,0 +1,70 @@
+{% extends "base.html.twig" %}
+
+{% block main_content %}
+    {{ dump() }}
+    <div class="padding-top-15">
+        <div class="card">
+            <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a class="nav-link active" href="{{ path('administration_shop') }}">
+                            {{ 'admin.return' | trans }}
+                        </a></li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane">
+                        <div class="post">
+                            <div class="card-body p-0">
+                                {{ form_start(editAssortment) }}
+                                {{ form_row(editAssortment.name) }}
+                                {{ form_end(editAssortment) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main_content %}
+{% block javascripts %}
+<script src="{{ asset('js/jquery.collection.js') }}"></script>
+<script>
+    var $category = $('#app_offer_category')
+    var $token = $('#app_offer__token')
+    $category.change(function () {
+        var $form = $(this).closest('form')
+        var data = {}
+        data[$token.attr('name')] = $token.val()
+        data[$category.attr('name')] = $category.val()
+        $.post($form.attr('action'), data).then(function (response) {
+            $('#app_offer_subcategory').replaceWith(
+                $(response).find('#app_offer_subcategory')
+            )
+        })
+    })
+
+    var $mark = $('#app_offer_offerCar_0_mark')
+    var $tokenMark = $('#app_offer__token')
+    $mark.change(function () {
+        var $form = $(this).closest('form')
+        var data = {}
+        data[$tokenMark.attr('name')] = $tokenMark.val()
+        data[$mark.attr('name')] = $mark.val()
+        $.post($form.attr('action'), data).then(function (response) {
+            $('#app_offer_subcategory').replaceWith(
+                $(response).find('#app_offer_subcategory')
+            )
+        })
+    })
+    $('.car-collection').collection({
+        allow_duplicate: true,
+        name_prefix: 'app_offerCarMark',
+    });
+
+    $('.availabilityOffer-collection').collection({
+        allow_duplicate: true,
+        name_prefix: 'app_availabilityOffer',
+    });
+</script>
+{% endblock %}

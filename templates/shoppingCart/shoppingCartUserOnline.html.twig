@@ -1,0 +1,88 @@
+{% extends "base.html.twig" %}
+
+{% block main_content %}
+    <div class="padding-top-15">
+    <div class="content-settings">
+        {% set individualOrder = false %}
+        {% set normalOrder = false %}
+        {% if shoppingCart != null %}
+        <div class="row">
+            <div class="col-sm-6">
+                {{ 'shopping_cart.name' | trans }}
+            </div>
+            <div class="col-sm-1">
+                {{ 'shopping_cart.quantity' | trans }}
+            </div>
+            <div class="col-sm-2">
+                {{ 'shopping_cart.price' | trans }}
+            </div>
+            <div class="col-sm-3">
+
+            </div>
+        </div>
+        {% for shopping in shoppingCart %}
+        {% if shopping.individualOrder == true %}
+        {% set individualOrder = true %}
+        <div class="shopping orange">
+            {% else %}
+            <div class="shopping">
+                {% endif %}
+                {% set normalOrder = true %}
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        {{ shopping.offer.name }}
+                    </div>
+                    <div class="col-sm-1">
+                        {{ shopping.quantity }}
+                    </div>
+                    <div class="col-sm-2">
+                        {{ shopping.price }} zł
+                    </div>
+                    <div class="col-sm-3">
+                        <a href="{{ path('add_shopping_cart',{'option' : 'usun', 'offerId' : shopping.offer.id, 'shoppingCartId' : shopping.id}) }}">
+                            <button type="button" class="btn btn-danger">{{ 'shopping_cart.delete' | trans }} </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% if individualOrder == true and normalOrder == true %}
+                {{ 'shopping_cart.message_order_individual' | trans }}
+                <div class="order-form">
+                    <form action="{{ path('summary') }}">
+                        <select name="proofOfPurchase" class="form-control">
+                            {% for choice in choice %}
+                                <option>{{ choice }}</option>
+                            {% endfor %}
+                        </select>
+                        <select name="orderSeparately" class="form-control">
+                            {% for choice in orderChoice %}
+                                <option>{{ choice }}</option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit" class="btn btn-success">{{ 'shopping_cart.order' | trans }}</button>
+                    </form>
+                </div>
+            {% else %}
+                <div class="order-form">
+                    <form action="{{ path('summary') }}">
+                        <select name="proofOfPurchase" class="form-control">
+                            {% for choice in choice %}
+                                <option>{{ choice }}</option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit" class="btn btn-success">{{ 'shopping_cart.order' | trans }}</button>
+                    </form>
+                </div>
+            {% endif %}
+            {% set individualOrder = false %}
+            {% set normalOrder = false %}
+
+            {% else %}
+                {{ 'shopping_cart.result_null' | trans }}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock main_content %}

@@ -1,0 +1,98 @@
+{% extends "base.html.twig" %}
+
+{% block main_content %}
+    <div class="padding-top-15">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="card">
+            <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('edit_user') }}">
+                            {{ 'profile.complete_data' | trans }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane" id="activity">
+                        <div class="post">
+                            <div class="card-body p-0">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'profile.name' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ userInfo.name }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'profile.surname' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ userInfo.surname }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'profile.email' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ userInfo.email }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'profile.phone' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ userInfo.phone }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'profile.nip' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ userInfo.NIP }}
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'profile.address' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ userInfo.address }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'profile.zip_code' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ userInfo.zipCode }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'profile.client_number' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ userInfo.clientNUmber }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main_content %}
+

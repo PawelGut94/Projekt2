@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block main_content %}
+    <div class="one-time">
+        {% for photo in photos %}
+        <img class="log main-gallery" src="{{ asset('image/'~photo.photo) }}" alt="Tu podaj tekst alternatywny" />
+        <img class="log main-gallery" src="{{ asset('image/czesci.jpg') }}" alt="Tu podaj tekst alternatywny" />
+        {% endfor %}
+    </div>
+
+    {% for text in text %}
+    <div class="card">
+        <div class="card-header p-2">
+            <b>{{ text.title }}</b>
+        </div>
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="active tab-pane" id="activity">
+                    <div class="post">
+                        <div class="card-body p-0">
+                                <div class="row">
+                                    {{ text.text }}
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+{% endblock main_content %}
+{% block javascripts %}
+<script>
+    $('.one-time').slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        adaptiveHeight: true,
+        autoplay: true
+    });
+</script>
+{% endblock %}

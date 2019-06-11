@@ -1,0 +1,80 @@
+{% extends "base.html.twig" %}
+
+{% block main_content %}
+    <div class="padding-top-15">
+        <div class="card">
+            <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('information_user') }}">
+                            {{ 'profile.return' | trans }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane" id="activity">
+                        <div class="post">
+                            <div class="card-body p-0">
+                                {{ form_start(editUser) }}
+                                {{ form_row(editUser.name) }}
+                                {{ form_row(editUser.surname) }}
+                                {{ form_row(editUser.clientNumber) }}
+                                {{ form_row(editUser.email) }}
+                                {{ form_row(editUser.NIP) }}
+                                {{ form_row(editUser.address) }}
+                                {{ form_row(editUser.zipCode) }}
+                                {% if user.rodo != null %}
+                                    <div class="hidden">
+                                {{ form_row(editUser.rodo) }}
+                                        {% else %}
+                                            <div class="rodo-form">
+                                                <div class="rodo-check-box">
+                                                    {{ form_row(editUser.rodo) }}
+                                                </div>
+                                                <div class="rodo-text">
+                                                    Akceptuje klauzulę RODO<a href="#" class="rodo-show">(szczegóły)</a>
+                                                </div>
+                                            </div>
+
+                                        <div id="rodo" class="rodo rodo-hidden">
+                                            <p>Administratorem Twoich danych jest [pełna nazwa firmy] z siedzibą w [adres siedziby], wpisanej do Centralnej Ewidencji i Informacji o Działalności Gospodarczej, pod numerem NIP: [NIP], REGON: [REGON]. W sprawach związanych z przetwarzaniem i ochroną danych osobowych wyznaczony został punkt kontaktowy w postaci adresu e-mail: [ades e-mail] Kontakt we wskazanych sprawach możliwy jest także w postaci tradycyjnej korespondencji na adres administratora z dopiskiem: „Ochrona Danych Osobowych” oraz osobiście pod adresem [adres siedziby bądź miejsca wykonywania działalności].
+
+                                                Podane przez Ciebie dane osobowe będą przetwarzane w następujących celach:
+                                                – wykonania umowy kupna-sprzedaży bądź usługi – przetwarzanie jest niezbędne do wykonania umowy, aż do czasu zakończenia umowy,
+                                                – marketingu bezpośredniego – do czasu zakończenia umowy lub złożenia sprzeciwu,
+                                                – finansowo-księgowych – przetwarzanie jest niezbędne do wykonania przepisów prawa podatkowego,
+                                                – obrony przed roszczeniami i dochodzenia roszczeń – do czasu wygaśnięcia okresu roszczeń zgodnie z przepisami Kodeksu Cywilnego,
+                                                – prowadzenia procesów reklamacyjnych.
+
+                                                Posiadasz prawo dostępu do treści swoich danych oraz prawo ich sprostowania, usunięcia, ograniczenia przetwarzania, prawo do przenoszenia danych, prawo wniesienia sprzeciwu (np. jeśli dane są przetwarzane na podstawie Twojej zgody lub w celach marketingowych czy udostępniania Twoich danych); posiadasz prawo do cofnięcia zgody w dowolnym momencie. W celu cofnięcia zgody możesz skontaktować się z punktem obsługi klienta w naszej siedzibie bądź biurze [adres siedziby bądź biura] lub wysyłając wiadomość e-mail na adres: [adres e-mail]. Masz również prawo wniesienia skargi do organu nadzorczego – Prezesa Urzędu Ochrony Danych Osobowych.
+
+                                                Podanie przez Ciebie danych osobowych jest w pełni dobrowolne. Niepodanie danych osobowych będzie skutkowało niemożliwością pełnego wykonania zobowiązań, przyjętych przez [nazwa firmy] w ramach zawieranych z Tobą umów.</p>
+                                                <p class="rodo-close"><a href="#">Zamknij</a></p>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {{ form_row(editUser.save) }}
+                                {{ form_end(editUser) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main_content %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $('.rodo-show').on('click', function () {
+                $('#rodo').removeClass('rodo-hidden')
+            })
+            $('.rodo-close').on('click', function () {
+                $('#rodo').addClass('rodo-hidden')
+            })
+        });
+    </script>
+{% endblock %}
+

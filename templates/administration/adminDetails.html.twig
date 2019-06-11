@@ -1,0 +1,103 @@
+{% extends "base.html.twig" %}
+
+{% block main_content %}
+    <div class="padding-top-15">
+        <div class="card">
+            <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('administration_admin') }}">
+                            {{ 'admin.return' | trans }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane" id="activity">
+                        <div class="post">
+                            <div class="card-body p-0">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'profile.name' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ user.name }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'profile.surname' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ user.surname }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'profile.email' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ user.email }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'profile.phone' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {% if user.phone != null %}
+                                        {{ user.phone }}
+                                        {% else %}
+                                            {{ 'null_info' | trans }}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'profile.nip' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {% if user.NIP != null %}
+                                            {{ user.NIP }}
+                                        {% else %}
+                                            {{ 'null_info' | trans }}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'profile.address' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ user.address }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'profile.zip_code' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ user.zipCode }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'profile.client_number' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {% if user.clientNUmber != null %}
+                                            {{ user.clientNUmber }}
+                                        {% else %}
+                                            {{ 'null_info' | trans }}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main_content %}

@@ -1,0 +1,172 @@
+{% extends "base.html.twig" %}
+
+{% block main_content %}
+    <div class="padding-top-15">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="card">
+            <div class="card-header p-2">
+                <b>{{ 'admin.information' | trans }}</b>
+                <button type="button" class="right btn btn-success">
+                    <a href="{{ path('administration_assortment_option',{ 'option' : 'edytuj', 'offer' : assortment.id}) }}">{{ 'admin.edit' | trans }}</a>
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane" id="activity">
+                        <div class="post">
+                            <div class="card-body p-0">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'admin.assortment_details.id' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ assortment.id }}
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'admin.assortment_details.name' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ assortment.name }}
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'admin.assortment_details.description' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ assortment.description }}
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'admin.assortment_details.price' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ assortment.price }}
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'admin.assortment_details.category' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ assortment.category.name }}
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'admin.assortment_details.subcategory' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ assortment.subcategory.name }}
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'admin.assortment_details.quantity' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ assortment.quantity }}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header p-2">
+                <b>{{ 'admin.assortment_details.car' | trans }}</b>
+                <a href="{{ path('administration_assortment_car_option',{ 'option' : 'dodaj', 'offer' : assortment.id}) }}">
+                    <button class="right btn btn-success">{{ 'admin.add' | trans }}</button>
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane" id="activity">
+                        <div class="post">
+                            <div class="card-body p-0">
+                                {% for mark in mark %}
+                                    <div class="row">
+                                        <div class="col-sm-9">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                   {{ mark.carMark.name }}
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    {% for model in model %}
+                                                        {% if mark.carMark.name == model.carModel.mark.name %}
+                                                        {{ model.carModel.name }},
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <a href="{{ path('administration_assortment_car_option',{ 'option' : 'usun', 'offer' : assortment.id, 'mark' : mark.carMark.id}) }}">
+                                                <button class="margin-bottom-10 margin-left-10 right btn btn-danger">{{ 'admin.delete' | trans }}</button>
+                                            </a>
+                                            <a href="{{ path('administration_assortment_car_option',{ 'option' : 'usun-wybrane', 'offer' : assortment.id, 'mark' : mark.carMark.id}) }}">
+                                                <button class="margin-bottom-10 right btn btn-danger">{{ 'admin.delete_choices' | trans }}</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="card">
+        <div class="card-header p-2">
+            <b>{{ 'admin.photo' | trans }}</b>
+            <a href="{{ path('administration_assortment_photo_option',{ 'option' : 'dodaj', 'offer' : assortment.id}) }}">
+                <button type="button" class="right btn btn-success">{{ 'admin.add' | trans }}</button>
+            </a>
+        </div>
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="active tab-pane" id="activity">
+                    <div class="post">
+                        <div class="row">
+                            <div class="col-sm-12 photo-content">
+                                {% for photo in photos %}
+                                    <div class="photo">
+                                        <img class="log image" style="" src="{{ asset('image/'~photo.photo) }}"
+                                             alt="Tu podaj tekst alternatywny"/>
+                                        <div>
+                                            <a href="{{ path('administration_assortment_photo_option',{ 'option' : 'usun', 'offer' : photo.id}) }}">
+                                                <button class="btn btn-danger">{{ 'admin.delete' | trans }}</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+    </div>
+{% endblock main_content %}

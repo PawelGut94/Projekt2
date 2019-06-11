@@ -1,0 +1,81 @@
+{% extends "base.html.twig" %}
+
+{% block main_content %}
+    <div class="padding-top-15">
+        <div class="content-settings">
+            {% set available = 'true' %}
+            <div>{{ 'order.number_order' | trans }} {{ order.id }}</div>
+            <div>{{ 'order.proof_of_purchase' | trans }}: {{ order.proofOfPurchase }}</div>
+            {% for order in orderDetails %}
+                <div class="order-details">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            {{ 'order.number_offer' | trans }}
+                        </div>
+                        <div class="col-sm-9">
+                            {{ order.offer.id }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            {{ 'order.name_offer' | trans }}
+                        </div>
+                        <div class="col-sm-9">
+                            {{ order.offer.name }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            {{ 'order.quantity' | trans }}
+                        </div>
+                        <div class="col-sm-9">
+                            {{ order.quantity }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            {{ 'order.price' | trans }}
+                        </div>
+                        <div class="col-sm-9">
+                            {{ order.price }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            {{ 'order.together' | trans }}
+                        </div>
+                        <div class="col-sm-9">
+                            {{ order.totalPrice }}
+                        </div>
+                    </div>
+                    {% if order.available == false %}
+                        <div class="row">
+                            <div class="col-sm-3">
+                                {{ 'order.status' | trans }}
+                            </div>
+                            <div class="col-sm-9 orange">
+                                {{ 'order.ordered' | trans }}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <div class="order-details">
+                <div class="row">
+                    <div class="col-sm-3">
+                        {{ 'order.final_price' | trans }}
+                    </div>
+                    <div class="col-sm-9">
+                        {{ order.price }}
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a href="{{ path('order_status',{ 'option' : 1, 'idOrder' : order.id}) }}">
+                    <button type="button" class="btn btn-success">{{ 'order.finished' | trans }}</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+{% endblock main_content %}

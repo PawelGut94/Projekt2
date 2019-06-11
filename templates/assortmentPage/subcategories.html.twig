@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block main_content %}
+    <div class="padding-top-15">
+        <div class="card">
+            <div class="card-header p-2 text">
+                {{ 'please_select_subcategory' | trans }}
+            </div>
+            <div class="card-body">
+                {% if subcategories != null %}
+                {% set number = 0 %}
+                {% for subcategory in subcategories %}
+                    {% if number == 0 %}
+                        <div class="row">
+                    {% endif %}
+                    <div class="col-sm-3">
+                        <a href="{{ path('mainSearch',{'category' : category.name, 'subcategory' : subcategory.name, 'selectedSubcategories' : true}) }}">
+                            <button type="button" class="assortment-button btn btn-success">
+                                {{ subcategory.name }}
+                            </button>
+                        </a>
+                    </div>
+                    {% set number = number + 1 %}
+                    {% if number == 4 %}
+                        </div>
+                        {% set number = 0 %}
+                    {% endif %}
+                {% endfor %}
+                {% else %}
+                    {{ 'lack_subcategories' | trans }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock main_content %}

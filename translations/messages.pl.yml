@@ -1,0 +1,247 @@
+title:
+  base: Sklep z częściami
+main_page: Strona główna
+contact: Kontakt
+menu:
+  contact:
+    contact: Kontakt
+    main: Siedziba firmy:
+    place: Odziały:
+    street: Podaj ulice:
+    city: Podaj miasto:
+    choise_place: Wybierz oddział:
+  company: O firmie
+  points_of_sale: Punkty sprzedaży
+  assortment:
+    name: Części
+    result_null: Brak wyników wyszukiwania
+  login: Zaloguj się
+  profile: Profil
+  welcome: Witaj
+street: ul.
+assortment:
+  add_offer: Dodaj do koszyka
+  availability: Dostępna ilość
+  city: Miasto
+  address: Adres
+  quantity: Ilość sztuk
+  message_for_individual_order: Oferta nie jest dostępna lub ilość części jest za mała. Złóż zamówienie indywidualne a ją my sprowadzimy.
+  order_individual: Zamówienie indywidualne
+user:
+  profile: Profil
+  logout: Wyloguj
+
+search:
+  name: Nazwa
+  city: Miasto
+  category: Kategoria
+  price: Cena
+  car_brand: Marka samochodu
+  car_model: Model samochodu
+
+shopping_cart:
+  option: Opcje
+  name: Nazwa
+  shop: Sklep
+  price: Cena
+  delete: Usuń
+  edit: Edytuj
+  order: Zamów
+  order_all: Zamów wszystko
+  order_separately: Zamów oddzielnie
+  quantity: Ilość
+  result_null: Koszyk jest pusty
+  message_order_individual: W twoim zamówieniu znjaduje się zamówienie indywidualne. W przydaku wybrania opcji zamów wszystko twoje zamówienie będzie gotowe do obioru po sprowadzeniu wszystkich części, a w przydku zamówienie oddzielnego zostaną utworzone 2 oddzielne zamówienia.
+  error:
+    name: Nazwa
+    available_quantity: Dostępna ilość
+    selected_quantity: Wybrana Ilość
+    message: Została wybrana nie dostepna ilość artyków
+    return_shopping_cart: Powrót do koszyka
+
+order_cart:
+  number: Numer zamówienia
+  name: Nazwa
+  price: Cena
+
+return: Powrót
+
+profile:
+  shopping_cart: Koszyk
+  password_change: Zmiana hasła
+  history: Transakcje
+  profil: Profil
+  information: Informacje o profilu
+  name: Imie
+  surname: Nazwisko
+  nip: numer NIP
+  email: e-mail
+  phone: Numer telefonu
+  logout: Wyloguj
+  edit: Edytuj
+  address: Adres
+  zip_code: Kod pocztowy
+  client_number: Numer klienta
+  complete_data: Uzupełnij dane
+  return: Wróć
+  client_numer: Numer klienta
+
+security:
+  login:
+    username:
+    password:
+    remember_me:
+
+
+admin:
+  administration: Administracja
+  user: Użytkownicy
+  client: Klienci
+  admin: Administratorzy
+  orders: Zamówienia
+  model: Model
+  mark: Marka
+  edit: Edytuj
+  categories: Kategorie
+  car: Samochody
+  name_and_surname: Imie i nazwisko
+  assortment: Asortyment
+  shop: Sklepy
+  main_page: Strona główna
+  list_user: Lista użytkowników
+  list_admin: Lista administratorów
+  add_admin: Dodaj administratora
+  list_offer: Lista ofert
+  list_shop: Lista sklepów
+  list_category: Lista kategori
+  list_subcategory: Lista podkategori
+  list_car: Lista samochodów
+  list_model: Lista modeli
+  add_model: Dodaj model
+  add_car: Dodaj samochód
+  add_shop: Dodaj sklep
+  add_photo: Dodaj zdjęcie
+  edit_text: Edytuj tekst
+  add_text: Dodaj text
+  sailder_main_page: Slaider na stronie głównej
+  main_page_text: Tekst na stronie gółnej
+  add_category: Dodaj kategorie
+  add_subcategory: Dodaj podkategorie
+  create_user: Utórz użytkownika
+  create_offer: Utwórz oferte
+  user_name: Nazwa użytkownika
+  offer_name: Nazwa oferty
+  city: Miasto
+  title: Tytuł
+  text: Treść
+  delete_choices: Usuń wybrane
+  address: Adres
+  numbers_phones: Numery telefonów
+  zip_code: kod pocztowy
+  NIP: NIP
+  e_mail: e-mail
+  option: Opcje
+  phone: Telefon
+  category: Kategoria
+  subcategory: Podkategoria
+  return: Wróć
+  lack_offer: Brak ofert
+  name_categories: Nazwa kategori
+  save: Zapisz
+  car_mark: Marka samochodu
+  car_model: Model samochodu
+  add: Dodaj
+  delete: Usuń
+  text_null: Brak dodanych informacji
+  photo_null: Brak zdjęć
+  availability: Dostępność
+  photo: Zdjęcia
+  information: Informacje ogólne
+  assortment_details:
+    id: id
+    name: Nazwa
+    description: Opis
+    price: Cena
+    category: Kategoria
+    subcategory: Subkategoria
+    car: Samochody
+    name_shop: Nazwa sklepu
+    quantity: Ilość
+
+user_history:
+  history: Historia
+  in_implementation: W realizacji
+  number_order: Numer zamówienia
+  shop: Sklep
+  date: Data
+  price: Cena
+  option: Opcje
+  status_order: Status zamówienia
+  status_order_finished: Gotowe do odbioru
+  status_order_in_implementation: W trakcie realizacji
+  status_order_accepted_for_implementation: Przyjęte do realizacji
+
+form:
+  shop: Sklep
+  quantity: Ilość
+  availability_quantity: Dostępna ilość
+  car: Samochody
+  name: Nazwa
+  description: Opis
+  price: Cena
+  category: Kategoria
+  subcategory: Podkategoria
+  select_category: Wybierz kategorie
+  select_subcategory: Wybierz podkategorie
+  select_car: Wybierz samochód
+  select_mark: Wybierz markę
+  number_phone: Numer telefonu
+  contact: Kontakt
+  title: Tytuł
+  save: Zapisz
+  mark: Marka
+  model: Model
+  search: Szukaj
+  all: Wszystko
+  delete: Usuń
+  photo: Zdjęcia
+  add_to_shopping_cart: Dodaj do koszyka
+
+
+null_info: Brak informacji
+
+order:
+  number_order: Numer zamówienia
+  orders_for_shop: Zamówienia dla sklepu
+  accepted_for_implementation: Przyjęte do realizacji
+  in_implementation: W realizacji
+  finished: Gotowe do odbioru
+  number_offer: Numer oferty
+  name_offer: Nazwa oferty
+  quantity: Ilość
+  price: Cena
+  together: Razem
+  final_price: Cena końcowa
+  status: Status
+  to_be_ordered: Do zamówienia
+  lack_order_for_implementation: Brak zleceń do realizacji
+  lack_order_in_implementation: Brak zleceń w realizacji
+  lack_order_finished: Brak zleceń gotowych do odbioru
+  lack_ordered: Brak zleceń do zamówienia
+  order_missing: Zamów brakujące
+  ordered: Zamówione
+  implementation: Realizuj
+  more: Więcej
+  pick_up: Odebrane
+  date: Data
+  proof_of_purchase: Dowód zakupu
+
+city: Miasto
+addres: Adress
+zip_code: Kod pocztowy
+phones: Telefony
+please_select_category: Proszę wybrać kategorie
+please_select_subcategory: Proszę wybrać podkategorie
+lack_subcategories: Brak podkategori
+email: e-mail
+

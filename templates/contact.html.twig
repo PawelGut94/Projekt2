@@ -1,0 +1,77 @@
+{% extends "base.html.twig" %}
+
+{% block main_content %}
+<div class="padding-top-15">
+    <div class="card">
+        <div class="card-header p-2">
+            <ul class="nav nav-pills">
+                <li class="nav-item max-width">
+                   Dane kontaktowe
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="active tab-pane" id="activity">
+                    <div class="post">
+                        <div class="card-body p-0">
+                            {% for contact in contact %}
+                            <div class="contact">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        {{ 'city' | trans }}
+                                    </div>
+                                    <div class="col-sm-6">
+                                        {{ contact.city }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        {{ 'address' | trans }}
+                                    </div>
+                                    <div class="col-sm-6">
+                                        {{ contact.address }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        {{ 'zip_code' | trans }}
+                                    </div>
+                                    <div class="col-sm-6">
+                                        {{ contact.zipCode }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        {{ 'email' | trans }}
+                                    </div>
+                                    <div class="col-sm-6">
+                                        {{ contact.email }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        {{ 'phones' | trans }}
+                                    </div>
+                                    <div class="col-sm-6">
+                                        {% for phone in phone %}
+                                            {% if phone.institution.id == contact.id %}
+                                                <div>
+                                                    {{ phone.number }}
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <div class="contact">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock main_content %}
+

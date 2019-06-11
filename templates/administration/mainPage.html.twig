@@ -1,0 +1,143 @@
+{% extends "base.html.twig" %}
+
+{% block main_content %}
+    <div class="padding-top-15">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="card">
+            <div class="card-header p-2">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <b> {{ 'admin.sailder_main_page' | trans }}</b>
+                    </div>
+                    <div class="col-sm-6">
+                        <ul class="nav nav-pills right">
+                            <li>
+                                <a href="{{ path('administration_main_page_option',{ 'option' : 'dodaj', 'type' : 'photo'}) }}">
+                                    <button class="btn btn-success">{{ 'admin.add_photo' | trans }}</button>
+                                </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane" id="car">
+                        <div class="post">
+                            <div class="row">
+                                {% if photo == null %}
+                                    {{ 'admin.photo_null' | trans }}
+                                {% else %}
+                                    <div class="col-sm-12 photo-content">
+                                        {% for photo in photo %}
+
+                                            <div class="photo">
+                                                <img class="log image" style=""
+                                                     src="{{ asset('image/'~photo.photo) }}"/>
+                                                <div>
+                                                    <a href="{{ path('administration_main_page_option',{ 'option' : 'usun','type' : 'photo', 'id' : photo.id}) }}">
+                                                        <button class="btn btn-danger">{{ 'admin.delete' | trans }}</button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if text != null %}
+            <div class="card">
+                <div class="card-header p-2">
+                    <b>{{ 'admin.main_page_text' | trans }}</b>
+                    <a href="{{ path('administration_main_page_option',{ 'option' : 'dodaj', 'type' : 'text'}) }}">
+                        <button type="button" class="right btn btn-success">{{ 'admin.add_text' | trans }}</button>
+                    </a>
+                </div>
+                {% for text in text %}
+                    <div class="card-header p-2" style="background: #fff">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <div class="card-body">
+                                    <div class="tab-content">
+                                        <div class="active tab-pane" id="activity">
+                                            <div class="post">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div>
+                                                            <b>{{ 'admin.title' | trans }}</b>
+                                                        </div>
+                                                        <div class="padding-bottom-15">
+                                                            {{ text.title }}
+                                                        </div>
+                                                        <div>
+                                                            <b>{{ 'admin.text' | trans }}</b>
+                                                        </div>
+                                                        <div>
+                                                            {{ text.text }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <a href="{{ path('administration_main_page_option',{ 'option' : 'edytuj', 'type' : 'text', 'id' : text.id}) }}">
+                                    <button type="button"
+                                            class="main-page-btn margin-bottom-10 right btn btn-success">{{ 'admin.edit_text' | trans }}</button>
+                                </a>
+                                <a href="{{ path('administration_main_page_option',{ 'option' : 'usuń', 'type' : 'text', 'id' : text.id}) }}">
+                                    <button type="button"
+                                            class="main-page-btn right btn btn-danger">{{ 'admin.delete' | trans }}</button>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+
+        {% else %}
+            <div class="card">
+                <div class="card-header p-2">
+                    <b>{{ 'admin.main_page_text' | trans }}</b>
+                    <a href="{{ path('administration_main_page_option',{ 'option' : 'dodaj', 'type' : 'text'}) }}">
+                        <button type="button" class="right btn btn-success">{{ 'admin.add_text' | trans }}</button>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="active tab-pane" id="activity">
+                            <div class="post">
+                                <div class="row">
+                                    <div class="col-sm-12 photo-content">
+                                        {{ 'admin.text_null' | trans }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock main_content %}
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.collection.js') }}"></script>
+    <script>
+        $('.main-photo-collection').collection({
+            allow_duplicate: true,
+            name_prefix: 'app_mainPagePhotos',
+        });
+    </script>
+{% endblock %}

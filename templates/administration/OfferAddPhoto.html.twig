@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block main_content %}
+    <div class="padding-top-15">
+        <div class="card">
+            <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a class="nav-link active" href="{{ path('administration_shop') }}">
+                            {{ 'admin.return' | trans }}
+                        </a></li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane">
+                        <div class="post">
+                            <div class="card-body p-0">
+                                {{ form(photo) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main_content %}
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.collection.js') }}"></script>
+    <script>
+        $('.photo-collection').collection({
+            allow_duplicate: true,
+            name_prefix: 'app_offerPhotos',
+        });
+    </script>
+{% endblock %}

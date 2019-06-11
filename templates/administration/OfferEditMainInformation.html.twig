@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+
+{% block main_content %}
+    <div class="padding-top-15">
+        <div class="card">
+            <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a class="nav-link active" href="{{ path('administration_assortment_option',{ 'option' : 'szczegóły', 'offer' : offer}) }}">
+                            {{ 'admin.return' | trans }}
+                        </a></li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane">
+                        <div class="post">
+                            <div class="card-body p-0">
+                                {{ form_start(formOffer) }}
+                                {{ form_row(formOffer.name) }}
+                                {{ form_row(formOffer.description) }}
+                                {{ form_row(formOffer.price) }}
+                                {{ form_row(formOffer.category) }}
+                                {{ form_row(formOffer.subcategory) }}
+                                {{ form_end(formOffer) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main_content %}
+{% block javascripts %}
+    <script>
+        var $category = $('#app_offerEdit_category')
+        var $token = $('#app_offerEdit__token')
+        $category.change(function () {
+            var $form = $(this).closest('form')
+            var data = {}
+            data[$token.attr('name')] = $token.val()
+            data[$category.attr('name')] = $category.val()
+            $.post($form.attr('action'), data).then(function (response) {
+                $('#app_offerEdit_subcategory').replaceWith(
+                    $(response).find('#app_offerEdit_subcategory')
+                )
+            })
+        })
+    </script>
+{% endblock %}

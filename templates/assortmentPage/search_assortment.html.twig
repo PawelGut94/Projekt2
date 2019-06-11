@@ -1,0 +1,83 @@
+{% extends "base.html.twig" %}
+
+{% block main_content %}
+    <div class="padding-top-15">
+        <div class="row">
+            <div class="col-md-4 padding-bottom-15">
+                <div class="content-settings">
+                    {{ form_start(searchOffer) }}
+                    {{ form_row(searchOffer.name) }}
+                    {{ form_row(searchOffer.mark) }}
+                    {{ form_row(searchOffer.model) }}
+                    {{ form_row(searchOffer.category) }}
+                    {{ form_row(searchOffer.subcategory) }}
+                    {{ form_end(searchOffer) }}
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="content-settings">
+                    {% if search == null %}
+                        <div>
+                            {{ 'menu.assortment.result_null' | trans }}
+                        </div>
+                    {% else %}
+                        {% for search in search %}
+                            <div class="search">
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <li>
+                                            <a class="offer-name"
+                                               href="{{ path('search_details_assortment',{ 'offerNumber' : search.offer.id}) }}">{{ search.offer.name }}</a>
+                                        </li>
+                                        <div class="filters">
+                                            {{ search.offer.category.name }}
+                                            <i class="fas fa-angle-double-right"></i>
+                                            {{ search.offer.subCategory.name }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 price">
+                                        {{ search.offer.price }} zł
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main_content %}
+{% block javascripts %}
+    <script>
+        var $category = $('#app_offer2_category')
+        console.log($category);
+        var $token = $('#app_offer2__token')
+        $category.change(function () {
+            var $form = $(this).closest('form')
+            var data = {}
+            data[$token.attr('name')] = $token.val()
+            data[$category.attr('name')] = $category.val()
+            console.log(data[$category.attr('name')] = $category.val())
+            $.post($form.attr('action'), data).then(function (response) {
+                $('#app_offer2_subcategory').replaceWith(
+                    $(response).find('#app_offer2_subcategory')
+                )
+            })
+        })
+        var $mark = $('#app_offer2_mark')
+        console.log($category);
+        var $tokenMark = $('#app_offer2__token')
+        $mark.change(function () {
+            var $form = $(this).closest('form')
+            var data = {}
+            data[$tokenMark.attr('name')] = $tokenMark.val()
+            data[$mark.attr('name')] = $mark.val()
+            console.log(data[$mark.attr('name')] = $mark.val())
+            $.post($form.attr('action'), data).then(function (response) {
+                $('#app_offer2_model').replaceWith(
+                    $(response).find('#app_offer2_model')
+                )
+            })
+        })
+    </script>
+{% endblock %}

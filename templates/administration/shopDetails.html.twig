@@ -1,0 +1,76 @@
+{% extends "base.html.twig" %}
+
+{% block main_content %}
+    <div class="padding-top-15">
+        {{ dump() }}
+        <div class="card">
+            <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('administration_shop') }}">
+                            {{ 'admin.return' | trans }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane" id="activity">
+                        <div class="post">
+                            <div class="card-body p-0">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'admin.city' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ shop.city }}
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'admin.address' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ shop.address }}
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'admin.zip_code' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ shop.zipCode }}
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'admin.e_mail' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {{ shop.email }}
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <b>{{ 'admin.numbers_phones' | trans }}</b>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {% for phone in phone %}
+                                            <div>
+                                                {{ phone.number }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main_content %}

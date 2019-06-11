@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block main_content %}
+    <div class="padding-top-15">
+        <div class="content-settings">
+            <div class="normal">
+                <table class="table table-striped table-valign-middle">
+                    <thead>
+                    <tr>
+                        <th>{{ 'admin.city' | trans }}</th>
+                        <th>{{ 'admin.address' | trans }}</th>
+                        <th>{{ 'admin.option' | trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for shop in institution %}
+
+                        <tr>
+                            <td>
+                                {{ shop.city }}
+                            </td>
+                            <td>
+                                {{ shop.address }}
+                            </td>
+
+                            <td>
+                                <a href="{{ path('select_shop',{'shop' : shop.id}) }}">
+                                    <button type="button"
+                                            class="pos btn btn-success">{{ 'admin.orders' | trans }}</button>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% for shop in institution %}
+                <div class="padding-bottom-15 mobile">
+                    <a href="{{ path('select_shop',{'shop' : shop.id}) }}">
+                        <button type="button" class="button-mobile pos btn btn-success">{{ shop.name }}</button>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock main_content %}

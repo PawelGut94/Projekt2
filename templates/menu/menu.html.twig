@@ -1,0 +1,148 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <a href="{{ path('mainPage') }}" class="brand-link">
+        <img src="{{ asset('image/logo.png') }}" alt="Logo" class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">Sklep</span>
+    </a>
+    <div class="sidebar">
+        {% if app.user != null %}
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="info">
+                <a href="{{ path('information_user') }}" class="d-block">{{ 'menu.welcome' | trans }} {{ app.user.username }}</a>
+                <a href="/logout" class="d-block">
+                    <p>{{ 'profile.logout' | trans }}</p>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a href="{{ path('mainPage') }}" class="nav-link">
+                        <i class="nav-icon fa fa-th"></i>
+                        <p>
+                            {{ 'menu.company' | trans }}
+                            <span class="right badge badge-danger">New</span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('assortment') }}" class="nav-link">
+                        <i class="nav-icon fa fa-th"></i>
+                        <p>
+                            {{ 'menu.assortment.name' | trans }}
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('contact') }}" class="nav-link">
+                        <i class="nav-icon fa fa-th"></i>
+                        <p>
+                            {{ 'menu.contact.contact' | trans }}
+                        </p>
+                    </a>
+                </li>
+                {% if app.user != null %}
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-pie-chart"></i>
+                        <p>
+                            {{ 'menu.profile' | trans }}
+                            <i class="right fa fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ path('information_user') }}" class="nav-link">
+                                <i class="fas fa-user-circle nav-icon"></i>
+                                <p>{{ 'profile.information' | trans }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/profile/change-password" class="nav-link">
+                                <i class="fas fa-key nav-icon"></i>
+                                <p>{{ 'profile.password_change' | trans }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('shopping_cart') }}" class="nav-link">
+                                <i class="fas fa-shopping-cart nav-icon"></i>
+                                <p>{{ 'profile.shopping_cart' | trans }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('user_order') }}" class="nav-link">
+                                <i class="fas fa-history nav-icon"></i>
+                                <p>{{ 'profile.history' | trans }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/logout" class="nav-link">
+                                <i class="fas fa-sign-out-alt nav-icon"></i>
+                                <p>{{ 'profile.logout' | trans }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
+
+                {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item has-treeview menu-open">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fa fa-dashboard"></i>
+                        <p>
+                            {{ 'admin.administration' | trans }}
+                            <i class="right fa fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ path('administration_main_page') }}" class="nav-link">
+                                <i class="fa fa-circle-o nav-icon"></i>
+                                <p>{{ 'admin.main_page' | trans }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('order_implementation') }}" class="nav-link">
+                                <i class="fa fa-circle-o nav-icon"></i>
+                                <p>{{ 'admin.orders' | trans }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('administration_user') }}" class="nav-link">
+                                <i class="fa fa-circle-o nav-icon"></i>
+                                <p>{{ 'admin.client' | trans }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('administration_admin') }}" class="nav-link">
+                                <i class="fa fa-circle-o nav-icon"></i>
+                                <p>{{ 'admin.admin' | trans }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('administration_assortment') }}" class="nav-link">
+                                <i class="fa fa-circle-o nav-icon"></i>
+                                <p>{{ 'admin.assortment' | trans }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('administration_car') }}" class="nav-link">
+                                <i class="fa fa-circle-o nav-icon"></i>
+                                <p>{{ 'admin.car' | trans }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('administration_categories') }}" class="nav-link">
+                                <i class="fa fa-circle-o nav-icon"></i>
+                                <p>{{ 'admin.categories' | trans }}</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</aside>
